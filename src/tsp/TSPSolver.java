@@ -1,5 +1,8 @@
 package tsp;
 
+import tsp.heuristic.AHeuristic;
+import tsp.heuristic.Plus_proche_voisin;
+
 /**
  * 
  * This class is the place where you should enter your code and from which you can create your own objects.
@@ -69,21 +72,19 @@ public class TSPSolver {
 	 */
 	public void solve() throws Exception
 	{
-		for(int i=1; i <=m_instance.getNbCities(); i++)
-		   { 
-		m_solution.setCityPosition(i-1, i-1);
-		   } 
-		m_solution.setCityPosition(0, m_instance.getNbCities());
+		AHeuristic heuristique=new Plus_proche_voisin(this.getInstance(), "plusprochevoisin");
+		heuristique.solve();
+		m_solution=heuristique.getSolution();
 		// Example of a time loop
 		long startTime = System.currentTimeMillis();
 		long spentTime = 0;
-		do
+		/*do
 		{
 			// TODO
 			// Code a loop base on time here
 			// Test test
 			spentTime = System.currentTimeMillis() - startTime;
-		}while(spentTime < (m_timeLimit * 1000 - 100) );
+		}while(spentTime < (m_timeLimit * 1000 - 100) );*/
 		
 	}
 
