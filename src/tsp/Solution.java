@@ -84,6 +84,7 @@ public class Solution{
 	 * 	- {@link #setObjectiveValue(long)}
 	 */
 	private long m_objectiveValue;
+	
 
 	/** Data of the problem associated with the solution */
 	private Instance m_instance;
