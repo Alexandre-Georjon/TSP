@@ -36,10 +36,10 @@ public class Plus_proche_voisin extends AHeuristic {
 		int villeprecedente=0;
 		int villesuivante=0;
 		for(int k=0;k<this.m_instance.getNbCities()-1;k++) {
-			System.err.println(villeprecedente);
+			//System.err.println(villeprecedente);
 			villesuivante=this.getplusproche(villeprecedente, nonvisite);
-			System.err.println(villesuivante);
-			System.err.println(nonvisite);
+			//System.err.println(villesuivante);
+			//System.err.println(nonvisite);
 			villeprecedente=villesuivante;
 
 			this.m_solution.setCityPosition(villesuivante, k+1);

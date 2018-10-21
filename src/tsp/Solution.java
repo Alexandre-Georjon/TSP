@@ -2,6 +2,7 @@ package tsp;
 
 import java.io.PrintStream;
 import java.util.Arrays;
+import java.util.Comparator;
 
 /**
  * 
@@ -64,7 +65,7 @@ import java.util.Arrays;
  * @version 2017
  * 
  */
-public class Solution{
+public class Solution implements Comparable<Solution>{
 
 	// -----------------------------
 	// ----- ATTRIBUTS -------------
@@ -275,4 +276,19 @@ public class Solution{
 	public String getError() {
 		return m_error;
 	}
+
+	
+	public int compareTo(Solution o1) {
+		return (int) (this.getObjectiveValue()-o1.getObjectiveValue());
+	}
+	public boolean passeParVille(int i) {
+		for(int k=0;k<m_nbCities;k++) {
+			if(m_cities[k]==i) {
+				return true;
+			}
+		}
+		return false;
+	}
+
+	
 }

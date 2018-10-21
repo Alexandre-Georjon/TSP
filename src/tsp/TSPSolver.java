@@ -2,6 +2,9 @@ package tsp;
 
 import tsp.heuristic.AHeuristic;
 import tsp.heuristic.Plus_proche_voisin;
+import tsp.metaheuristic.AMetaheuristic;
+import tsp.metaheuristic.Decroise;
+import tsp.metaheuristic.Genetique;
 
 /**
  * 
@@ -72,20 +75,29 @@ public class TSPSolver {
 	 */
 	public void solve() throws Exception
 	{
-		AHeuristic heuristique=new Plus_proche_voisin(this.getInstance(), "plusprochevoisin");
-		heuristique.solve();
-		m_solution=heuristique.getSolution();
+		//AHeuristic heuristique=new Plus_proche_voisin(this.getInstance(), "plusprochevoisin");
+		//heuristique.solve();
+		//m_solution=heuristique.getSolution();
+		Genetique metaheuristique=new Genetique(m_instance, "genetic");
+		/*for(int k=0;k<300;k++) {
+			m_solution=metaheuristique.solve(m_solution);
+		}*/
+		Solution[] population=metaheuristique.genererpopulation(100);
+		
+		
+		
 		// Example of a time loop
 		long startTime = System.currentTimeMillis();
 		long spentTime = 0;
-		/*do
+		do
 		{
 			// TODO
 			// Code a loop base on time here
 			// Test test
+			metaheuristique.evolution(population);
 			spentTime = System.currentTimeMillis() - startTime;
-		}while(spentTime < (m_timeLimit * 1000 - 100) );*/
-		
+		}while(spentTime < (m_timeLimit * 1000 - 100) );
+		m_solution=population[0];
 	}
 
 	// -----------------------------
