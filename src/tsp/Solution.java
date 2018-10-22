@@ -64,7 +64,7 @@ import java.util.Arrays;
  * @version 2017
  * 
  */
-public class Solution{
+public class Solution implements Comparable<Solution>{
 
 	// -----------------------------
 	// ----- ATTRIBUTS -------------
@@ -274,6 +274,16 @@ public class Solution{
 	 */
 	public String getError() {
 		return m_error;
+	}
+
+	@Override
+	public int compareTo(Solution arg0) {
+		if(this.getObjectiveValue()-arg0.getObjectiveValue()>0) {
+			return 1;
+		}else if(this.getObjectiveValue()-arg0.getObjectiveValue()<0) {
+			return -1;
+		}
+		return this.getObjectiveValue()-arg0.getObjectiveValue();
 	}
 
 }
