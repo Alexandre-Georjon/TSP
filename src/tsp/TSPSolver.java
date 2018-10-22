@@ -76,24 +76,27 @@ public class TSPSolver {
 	public void solve() throws Exception
 	{
 		
-		Insertion insertion=new Insertion(m_instance, "insertion");
+		Genetique genetique=new Genetique(m_instance, "algogénétique");
+		Solution[] population=genetique.genererpopulation(100);
+		genetique.evolution(population);
+		genetique.selection(population);
+		//m_solution=population[0];
+		System.err.println(population[0].getObjectiveValue());
 		
-		insertion.solve();
-		m_solution=insertion.getSolution();
-		
-		/*
+		//*
 		// Example of a time loop
 		long startTime = System.currentTimeMillis();
 		long spentTime = 0;
 		do
 		{
-			// TODO
-			// Code a loop base on time here
-			// Test test
+			genetique.evolution(population);
+			System.err.println(population[0].getObjectiveValue());
 			
 			spentTime = System.currentTimeMillis() - startTime;
 		}while(spentTime < (m_timeLimit * 1000 - 100) );
-		*/
+		m_solution=population[0];
+		//*/
+		
 		
 	}
 

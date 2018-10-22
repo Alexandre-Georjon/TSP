@@ -283,7 +283,7 @@ public class Solution implements Comparable<Solution>{
 		}else if(this.getObjectiveValue()-arg0.getObjectiveValue()<0) {
 			return -1;
 		}
-		return this.getObjectiveValue()-arg0.getObjectiveValue();
+		return 0;
 	}
 
 }
