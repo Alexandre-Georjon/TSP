@@ -80,8 +80,8 @@ public class TSPSolver {
 		Solution[] population=genetique.genererpopulation(100);
 		genetique.evolution(population);
 		genetique.selection(population);
-		//m_solution=population[0];
-		System.err.println(population[0].getObjectiveValue());
+		
+		
 		
 		//*
 		// Example of a time loop

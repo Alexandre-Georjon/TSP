@@ -117,10 +117,11 @@ public class Genetique extends AMetaheuristic{
 	
 	public void evolution(Solution[] population) throws Exception {
 		selection(population);
-		for(int k=0;k+1<population.length-1;k++) {
+		int milieu=population.length/2;
+		for(int k=0;k+1<milieu-2;k=k+2) {
 			Solution[] fils=hybridation1(population[k], population[k+1]);
-			population[k]=fils[0];
-			population[k+1]=fils[1];
+			population[milieu+k]=fils[0];
+			population[milieu+k+1]=fils[1];
 		}
 		mutation(population,0);
 		selection(population);
