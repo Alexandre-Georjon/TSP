@@ -3,7 +3,6 @@ package tsp;
 import tsp.heuristic.AHeuristic;
 import tsp.heuristic.Plus_proche_voisin;
 import tsp.metaheuristic.AMetaheuristic;
-import tsp.metaheuristic.Decroise;
 import tsp.metaheuristic.Genetique;
 
 /**
