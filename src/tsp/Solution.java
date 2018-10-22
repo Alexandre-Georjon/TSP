@@ -64,7 +64,7 @@ import java.util.Arrays;
  * @version 2017
  * 
  */
-public class Solution implements Comparable<Solution>{
+public class Solution{
 
 	// -----------------------------
 	// ----- ATTRIBUTS -------------
