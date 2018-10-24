@@ -15,7 +15,7 @@ public class Plus_proche_voisin extends AHeuristic {
 	
 	public int getplusproche(int i,ArrayList<Integer> nonvisite) {
 		long[] distancei=this.m_instance.getDistances()[i];
-		int NBcities=this.m_instance.getNbCities();
+	  	int NBcities=this.m_instance.getNbCities();
 		int min = nonvisite.get(0);
 		long distmin=distancei[min];
 		for(int k :nonvisite) {
