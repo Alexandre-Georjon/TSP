@@ -1,10 +1,6 @@
 package tsp;
 
-import tsp.heuristic.AHeuristic;
-import tsp.heuristic.Insertion;
-import tsp.heuristic.Plus_proche_voisin;
-import tsp.metaheuristic.AMetaheuristic;
-import tsp.metaheuristic.Genetique;
+import tsp.heuristic.MetodoInsercion;
 
 /**
  * 
@@ -75,29 +71,11 @@ public class TSPSolver {
 	 */
 	public void solve() throws Exception
 	{
+		m_solution.print(System.err);
 		
-		Genetique genetique=new Genetique(m_instance, "algogénétique");
-		Solution[] population=genetique.genererpopulation(100);
-		genetique.evolution(population);
-		genetique.selection(population);
+		MetodoInsercion m = new MetodoInsercion(m_instance);
 		
-		
-		
-		//*
-		// Example of a time loop
-		long startTime = System.currentTimeMillis();
-		long spentTime = 0;
-		do
-		{
-			genetique.evolution(population);
-			System.err.println(population[0].getObjectiveValue());
-			
-			spentTime = System.currentTimeMillis() - startTime;
-		}while(spentTime < (m_timeLimit * 1000 - 100) );
-		m_solution=population[0];
-		//*/
-		
-		
+		m_solution = m.heuristicaInsercion();
 	}
 
 	// -----------------------------
