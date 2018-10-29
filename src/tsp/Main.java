@@ -72,7 +72,7 @@ public class Main {
 	public static void main(String[] args) {
 		String filename = null;
 		long max_time = 60;
-		boolean verbose = false;
+		boolean verbose = true;
 		boolean graphical = false;
 		int typeInstance = 0;
 
@@ -119,6 +119,11 @@ public class Main {
 
 		// Create and solve problem
 		try {
+			
+			//Puedo insertar directamente los valores para no tener que agregarlos por los argumentos del programa
+			filename = "./instances/kroA200.tsp";
+			typeInstance = 0;
+			max_time = 3500;
 			
 			// Read data
 			Instance data = new Instance(filename, typeInstance);
