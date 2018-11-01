@@ -120,8 +120,8 @@ public class Main {
 		// Create and solve problem
 		try {
 			
-			//Puedo insertar directamente los valores para no tener que agregarlos por los argumentos del programa
-			filename = "./instances/kroA200.tsp";
+			// I can directly insert the values to not have to add them with the arguments of the program
+			filename = "./instances/rat575.tsp";
 			typeInstance = 0;
 			max_time = 3500;
 			

@@ -1,6 +1,6 @@
 package tsp;
 
-import tsp.heuristic.MetodoInsercion;
+import tsp.heuristic.Insertion;
 
 /**
  * 
@@ -73,7 +73,7 @@ public class TSPSolver {
 	{
 		m_solution.print(System.err);
 		
-		MetodoInsercion m = new MetodoInsercion(m_instance);
+		Insertion m = new Insertion(m_instance);
 		
 		m_solution = m.heuristicaInsercion();
 	}

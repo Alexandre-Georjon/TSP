@@ -5,23 +5,23 @@ import java.util.ArrayList;
 import tsp.Instance;
 import tsp.Solution;
 
-public class MetodoInsercion {
+public class Insertion {
 
 	private Node tour;
 	private int size;
 	private Instance mInstance;
 	
 	/**
-	 * Crea un tour vacio
+	 * Create an empty tour
 	 */
-	public MetodoInsercion(Instance inst)
+	public Insertion(Instance inst)
 	{
 		size = 0;
 		mInstance = inst;
 	}
 	
 	/**
-	 * Retorna una cadena de texto que muestra el tour
+	 * Returns  a text string that shows the tour
 	 */
 	public String toString()
 	{
@@ -43,14 +43,14 @@ public class MetodoInsercion {
 	}
 	
 	/**
-	 * Numero de puntos en el tour
-	 * @return Cantidad de puntos en el tour
+	 * Number of points of the tour
+	 * @return Number of points of the tour
 	 */
 	public int  size() { return size; }
 	
 	/**
-	 * Retorna la distancia total del tour
-	 * @return
+	 * Returns the total distance of the tour
+	 * @return distance
 	 */
 	public double distance() throws Exception
 	{
@@ -68,7 +68,7 @@ public class MetodoInsercion {
 	
 	public Solution heuristicaInsercion() throws Exception
 	{
-		//Cargo los indices de las ciudades en un arreglo para saber cuales faltan por agregar a la ruta
+		// Load indexes of cities in an arrangement to find out which ones to add to the tour
 		ArrayList<Integer> points = new ArrayList<Integer>();
 		
 		for (int i = 0; i < mInstance.getNbCities(); i++)
@@ -76,7 +76,7 @@ public class MetodoInsercion {
 			points.add(i);
 		}
 		
-		//Agrego la primera ciudad a la ruta y la remuevo de la lista de pendientes
+		// I add the first city to the route and remove it from the list of pending
 		int first = 0;
 		
 		tour = new Node(first);
@@ -84,7 +84,7 @@ public class MetodoInsercion {
 		
 		points.remove(0);
 		
-		//Busco la ciudad mas cercana a la primera, la agrego a la ruta y la elimino de pendientes
+		// I look for the city near the prime minister, I add it to the orientation and eliminate it from the waiting
 		int nearestToFirst = 0;
 		double nearestDistToFirst = mInstance.getDistances(0, first);
 		
@@ -104,13 +104,13 @@ public class MetodoInsercion {
 		
 		while(points.size() > 0)
 		{
-			//Busco el punto k de menor distancia a cualquier otro nodo ya insertado
+			// I am looking for the point k least distant from any other node already inserted
 			int nearestIndex = 0;
 			double nearestDist = Double.POSITIVE_INFINITY;
 			
 			for (int i = 0; i < points.size(); i++) 
 			{
-				//Busco la menor distancia para el punto actual
+				// I am looking for the shortest distance at the current point
 				int p = points.get(i);
 				double nearestCurrentDist = Double.POSITIVE_INFINITY;
 				
@@ -123,7 +123,7 @@ public class MetodoInsercion {
 					}
 				}
 				
-				//Si la menor distancia contra alguno de los nodos ya agregados es menor a la global, reemplazo
+				// If the smallest distance from the already added nodes is less than the overall distance, replace it
 				if(nearestCurrentDist < nearestDist)
 				{
 					nearestDist = nearestCurrentDist;
@@ -131,16 +131,16 @@ public class MetodoInsercion {
 				}
 			}
 			
-			//Como ya tengo el nodo k mas cercano a cualquiera ya insertado, lo inserto en el arco que permita la insercion mas economica,
-			//es decir, la que menos distancia agrega al tour actual
+			// As I have the node k closest to anyone already inserted, insert it into the arc that allows the most economical insertion,
+			// that is, the one that has less distance adds to the current tour
 			int toInsert = points.get(nearestIndex);
 			insertSmallest(toInsert);
 			
-			//Como ya se inserto al tour, se quita de la lista de puntos por agregar
+			// As already inserted in the tour, it is removed from the list of points by adding
 			points.remove(nearestIndex);
 		}
 		
-		//Creo la solucion y la retorno
+		// Create the solution and return it
 		Solution mSolution = new Solution(mInstance);
 		
 		for (int i = 0; i < size; i++) 
@@ -152,24 +152,24 @@ public class MetodoInsercion {
 	}
 	
 	/**
-	 * Inserta el punto P usando la heur�stica del menor incremento en la distancia total (busca el arco con la insercion mas economica) 
+	 * Insert the point P using the heuristic of the smallest increment of the total distance (look for the arc with the most economical insertion)
 	 * @param p
 	 */
 	public void  insertSmallest(int p) throws Exception
 	{
 		if( size == 0 )
 		{
-			//El tour esta vacio, asi que simplemente agrego el nuevo punto al inicio
+			// The tour is empty, so I just add the new point at the beginning
 			size = 1;
 			tour = new Node(p);
 			return;
 		}
 		
 		double smallestIncrease = Double.POSITIVE_INFINITY;
-		int index = 0;//Para manejar el segundo punto
+		int index = 0;// To manage the second point
 		double originalD, newD;
 		
-		//Busco primero si se inserta dentro del tour actual
+		// I look first for if it is inserted in the tour
 		for( int i = 1; i < size; i++)
 		{
 			originalD = mInstance.getDistances(tour.get(i).getCityIndex(), tour.get(i - 1).getCityIndex());//distancia de A a B
@@ -181,7 +181,7 @@ public class MetodoInsercion {
 			}
 		}
 		
-		//Reviso el caso de si toca insertar entre primer y ultimo nodo del tour
+		// I check the case of if this key insert between the first and the last node of the turn
 		originalD = mInstance.getDistances(tour.get(0).getCityIndex(), tour.get(size - 1).getCityIndex());//distancia del primero al ultimo
 		newD = mInstance.getDistances(p, tour.get(0).getCityIndex()) + mInstance.getDistances(p, tour.get(size - 1).getCityIndex());//distancia del primero a P al ultimo
 		if( newD - originalD <= smallestIncrease )
@@ -190,30 +190,30 @@ public class MetodoInsercion {
 			index = size - 1;
 		}
 		
-		//Inserto el nodo nuevo al lado del indice encontrado
+		// Insert the new node next to the index found
 		tour.insert( p, index );
 		size++;
 	}
 	
 	/**
-	 * Clase que representa un nodo dentro del tour.
-	 * Me permite crear el tour de forma recursiva en una lista encadenada, por eficiencia
+	 * Class that represents a node in the turn. 
+	 * This allows me to recursively create the circuit in a linked list, for the sake of efficiency.
 	 */
 	private class Node
 	{
 		/**
-		 * Punto p del nodo
+		 * Point p of the node
 		 */
 		private int cityIndex;
 		
 		/**
-		 * Siguiente nodo
+		 * next node
 		 */
 		private Node next;
 		
 		/**
-		 * Construye un nodo unico
-		 * @param p - Punto del nodo
+		 * Build a single node
+		 * @param p - point of the node
 		 */
 		public Node(int p)
 		{
@@ -222,9 +222,9 @@ public class MetodoInsercion {
 		}
 		
 		/**
-		 * Construye un nodo con su siguiente
-		 * @param p - Punto del nodo
-		 * @param n - Siguiente nodo
+		 * Build a knot with one's neighbor
+		 * @param p - Node point
+		 * @param n - next node
 		 */
 		public Node(int p, Node n)
 		{
@@ -233,9 +233,9 @@ public class MetodoInsercion {
 		}
 		
 		/**
-		 * Inserta recursivamente un nodo junto al nodo i
-		 * @param point - Punto del nuevo nodo
-		 * @param i - Indice del nodo junto al cual se inserta el nuevo
+		 * Recursively insert a node next to node i
+		 * @param point - New node point
+		 * @param i - Index of the node next to which the new is inserted
 		 */
 		public void insert(int point, int i)
 		{
@@ -252,15 +252,15 @@ public class MetodoInsercion {
 		}
 		
 		/**
-		 * Retorna el punto asociado al nodo
+		 * Returns the point associated with the node
 		 * @return
 		 */
 		public int getCityIndex(){ return cityIndex; }
 		
 		/**
-		 * Obtiene el nodo ubicado en el indice dado como parametro
-		 * @param index - Indice donde se ubica el nodo. 0 <= index <= size
-		 * @return Nodo en la posicion dada como parametro
+		 * Gets the node in the given index as a parameter
+		 * @param index - Index where the node is. 0 <= index <= size
+		 * @return Node in the given position as a parameter
 		 */
 		public Node get(int index)
 		{
