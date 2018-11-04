@@ -1,12 +1,6 @@
 package tsp;
 
-import tsp.heuristic.AHeuristic;
 import tsp.heuristic.Insertion;
-import tsp.heuristic.Plus_proche_voisin;
-import tsp.metaheuristic.AMetaheuristic;
-import tsp.metaheuristic.Deuxopt;
-import tsp.metaheuristic.localsearch;
-import tsp.metaheuristic.Genetique;
 
 /**
  * 
@@ -77,30 +71,11 @@ public class TSPSolver {
 	 */
 	public void solve() throws Exception
 	{
-		
-	
-		Plus_proche_voisin prochevoision=new Plus_proche_voisin(m_instance, "name");
-		prochevoision.solve();
-		Deuxopt deuxopt= new Deuxopt(m_instance, "");
-		m_solution=prochevoision.getSolution();
 		m_solution.print(System.err);
-		deuxopt.inverser(m_solution, 2, 5);
-		m_solution.print(System.err);
-		m_solution=deuxopt.solve(m_solution);
 		
-		/*
-		// Example of a time loop
-		long startTime = System.currentTimeMillis();
-		long spentTime = 0;
-		do
-		{
-			
-			m_solution=localsearch.solve(m_solution);
-			spentTime = System.currentTimeMillis() - startTime;
-		}while(spentTime < (m_timeLimit * 1000 - 100) );
-		//*/
+		Insertion m = new Insertion(m_instance);
 		
-		
+		m_solution = m.heuristicaInsercion();
 	}
 
 	// -----------------------------
