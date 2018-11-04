@@ -48,7 +48,7 @@ abstract public class AHeuristic {
 	// -----------------------------
 
 	/** Apply the heuristic to build m_solution */
-	public abstract void solve() throws Exception;
+	//public abstract void solve() throws Exception;
 	
 	
 	// -----------------------------
@@ -70,7 +70,7 @@ abstract public class AHeuristic {
 	}
 
 
-	/** À partir du dépôt 0, nous déterminons le nœud le plus proche "C"
+	/** ï¿½ partir du dï¿½pï¿½t 0, nous dï¿½terminons le nï¿½ud le plus proche "C"
 	 * @param i, nonvisite 
 	 * @author Lancheros-
 	 * */
@@ -112,7 +112,7 @@ abstract public class AHeuristic {
 	
 			this.m_solution.setCityPosition(villesuivante,1);
 			 
-			//  Nous trouvons le nœud "K" le plus proche (qui n'est pas dans le subtour) 
+			//  Nous trouvons le nï¿½ud "K" le plus proche (qui n'est pas dans le subtour) 
 			
 			for(int k=1;k<this.m_instance.getNbCities()-1;k++) {
 				
@@ -141,8 +141,8 @@ abstract public class AHeuristic {
 	
 	/** 
 	 * On trouve l'arc (i, j) du subtour qui permet l'insertion la plus 
-	 * économique dans le nœud K 
-	 * coût d'insertion = d(i,k) + d(k,j)
+	 * ï¿½conomique dans le nï¿½ud K 
+	 * coï¿½t d'insertion = d(i,k) + d(k,j)
 	 *  @author Lancheros - 
 	 *  */
 	
@@ -153,7 +153,7 @@ abstract public class AHeuristic {
 	
 	
 	
-	//ici, on insère le noeud k entre i et j
+	//ici, on insï¿½re le noeud k entre i et j
 	
 	
 	
