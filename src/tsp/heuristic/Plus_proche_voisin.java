@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import tsp.Instance;
 import tsp.Solution;
 
-// TODO: Auto-generated Javadoc
+
 /**
  * The Class Plus_proche_voisin.
  */
@@ -24,7 +24,8 @@ public class Plus_proche_voisin extends AHeuristic {
     }
 
 
-    /* (non-Javadoc)
+    /**return the nearest city of i in the list 'nonvisite'
+     * 
      * @see tsp.heuristic.AHeuristic#getplusproche(int, java.util.ArrayList)
      */
     public int getplusproche(int i,ArrayList<Integer> nonvisite) {

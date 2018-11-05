@@ -1,6 +1,7 @@
 package tsp;
 
 import tsp.heuristic.Insertion;
+import tsp.metaheuristic.Deuxopt;
 
 /**
  * 
@@ -71,11 +72,14 @@ public class TSPSolver {
 	 */
 	public void solve() throws Exception
 	{
-		m_solution.print(System.err);
+		//m_solution.print(System.err);
 		
 		Insertion m = new Insertion(m_instance);
 		
 		m_solution = m.heuristicaInsercion();
+		
+		Deuxopt deuxopt=new Deuxopt(m_instance, "");
+		m_solution=deuxopt.solve(m_solution);
 	}
 
 	// -----------------------------

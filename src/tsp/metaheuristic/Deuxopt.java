@@ -21,9 +21,11 @@ public class Deuxopt extends AMetaheuristic {
 		// TODO Auto-generated constructor stub
 	}
 
-	/**Effectue la méthode 2-opt sur la solution de départ
-	 * La méthode 2-opt consiste à inverser l'ordre des villes d'une portion de la solution
-	 * quand on peut reduire la longueur en "décroisant" deux arrêtes du graphe  solution
+	/**optimize the current solution using the 2-opt algorithm
+	 * (change the order of city in the solution when uncrossing 2 edge reduce the path)
+	 * 
+	 * @param a valid solution
+	 * @return a 2-opt version of the solution
 	 * 
 	 * @see tsp.metaheuristic.AMetaheuristic#solve(tsp.Solution)
 	 */
@@ -67,7 +69,7 @@ public class Deuxopt extends AMetaheuristic {
 	}
 
 	/**
-	 * Inverse l'odre des villes dans la solution entre l'index i et j, attention ne marche que si i<j ...
+	 * Inverse order of the city between i and j (with i<j)
 	 *
 	 * @param sol the solution
 	 * @param i the first index

@@ -21,9 +21,10 @@ public class localsearch extends AMetaheuristic{
 	}
 	
 
-	/** Retourne une solution meilleure que celle propose en argument
-	 * (la première obtenue par echange de deux ville)
+	/**Local search in the tsp problem with a swap operator 
+	 * 
 	 * @param sol une solution pour l'instance
+	 * @return the first better solution find with swap
 	 * @see tsp.metaheuristic.AMetaheuristic#solve(tsp.Solution)
 	 */
 	@Override
