@@ -276,6 +276,9 @@ public class Solution implements Comparable<Solution>{
 		return m_error;
 	}
 
+	
+	
+	
 	@Override
 	public int compareTo(Solution arg0) {
 		if(this.getObjectiveValue()-arg0.getObjectiveValue()>0) {
@@ -284,6 +287,16 @@ public class Solution implements Comparable<Solution>{
 			return -1;
 		}
 		return 0;
+	}
+	
+	public int getindex(int ville) throws Exception {
+		for(int i=0;i<m_nbCities;i++) {
+			if(this.getCity(i)==ville) {
+				return i;
+			}
+		}
+		return -1;
+		
 	}
 
 }

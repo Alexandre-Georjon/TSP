@@ -1,5 +1,7 @@
 package tsp.heuristic;
 
+import java.util.ArrayList;
+
 import tsp.Instance;
 import tsp.Solution;
 
@@ -46,7 +48,7 @@ abstract public class AHeuristic {
 	// -----------------------------
 
 	/** Apply the heuristic to build m_solution */
-	public abstract void solve() throws Exception;
+	//public abstract void solve() throws Exception;
 	
 	
 	// -----------------------------
