@@ -69,10 +69,6 @@ abstract public class AHeuristic {
 		return m_name;
 	}
 
-
-	
-
-
 }
 
 
