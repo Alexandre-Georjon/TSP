@@ -206,7 +206,6 @@ public class Genetique extends AMetaheuristic{
 				dejavisite.add(ville);
 			}
 		}
-		//fils.print(System.err);
 		for(int i=0;i<this.m_instance.getNbCities();i++) {
 			int ville=parent2.getCity(i);
 			if(!dejavisite.contains(ville)) {
@@ -257,12 +256,11 @@ public class Genetique extends AMetaheuristic{
 			}
 		
 		}
-		//mutation(nouvellepopulation, 0.1);
 		return nouvellepopulation;
 	}
 	
 	
-	public Solution[] evolution2(Solution[] population) throws Exception {
+	public Solution[] evolutionalternative(Solution[] population) throws Exception {
 		selection(population);
 		Solution[] nouvellepopulation=new Solution[population.length];
 		long somme=0;
@@ -273,7 +271,6 @@ public class Genetique extends AMetaheuristic{
 		proba[0]=population[0].evaluate()/somme;
 		for(int i=1;i<population.length;i++) {
 			proba[i]=(population[i].evaluate()/somme+proba[i-1]);
-			//System.err.print(proba[i]);
 		}
 		for(int k=5;k<population.length;k++) {
 			double nbAlea=Math.random();
@@ -288,8 +285,6 @@ public class Genetique extends AMetaheuristic{
 				nbAlea2-=population[position].getObjectiveValue()/somme;
 				position2--;
 			}
-			
-			//System.err.println("parent1= "+position+1+"parent2= "+position2+1+" "+nbAlea);
 			Solution temp =hybridationPMX(population[position+1], population[position2+1]);
 			if(temp.compareTo(population[k])<0) {
 				nouvellepopulation[k]=temp;
